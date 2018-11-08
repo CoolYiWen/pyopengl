@@ -41,9 +41,17 @@ class CShader(object):
 		glDeleteShader(fShader)
 
 	def Use(self):
+		"""
+		激活使用
+		"""
 		glUseProgram(self.m_Program)
 
 	def SetUniform(self, key, *value):
+		"""
+		设置uniform
+		这里会根据value的数量和类型自动调用glUniform{size}{type}方法
+		注意：只有在本着色器程序被激活之后才能调用
+		"""
 		size = len(value)
 		if size == 0:
 			return
